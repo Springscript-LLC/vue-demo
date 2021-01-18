@@ -1,0 +1,227 @@
+
+#navigationContainer {
+	width:0%;
+	position:fixed;
+	height: calc(100vh - 48px);
+	overflow:hidden;
+	
+	@include respond-to(large) { 
+		width: 351px !important;
+		float:left;
+		position:relative;
+		height:100%;
+	}
+	
+	#greetingsContainer {
+		width:100vw;
+		height:87px;
+		background-image: url('~@/assets/greeting-background-img.jpg');
+		background-size: 100% auto;
+
+		@include respond-to(large) { 
+			max-width: 351px;
+			height:34px;
+		}
+		
+		span {
+			color:$white;
+			padding:12px;
+			display: block;
+			font-size: 0.9em;
+			
+			@include respond-to(large) { 
+				padding:7px; 
+				text-indent: 8px;
+			}
+		}
+	}
+	nav {
+		background-color:$medium-blue;
+		color: $white;
+		float: left;
+		width: 100%;
+		height: calc(100vh - 135px);
+		overflow: scroll;
+		
+
+		@include respond-to(large) { 
+			width: 351px !important;
+			overflow: unset;
+			height: calc(100vh - 82px);
+		}
+		
+		
+		#navList {
+			opacity:0;
+			
+			@include respond-to(large) { 
+				opacity:1 !important;
+			}
+		}
+		
+		ol {
+			margin:0px;
+			padding:0px; 			
+
+			li {
+				width:100%;
+				list-style-type: none;
+				border-bottom: 1px solid $light-blue;
+				display: grid;
+				grid-template-columns: 1fr 24fr 1fr;
+				white-space: nowrap;
+
+				svg {
+					margin:1em;
+				}
+
+				span {
+					line-height:3.7em;
+					text-transform: uppercase;
+					font-size: 0.85em;
+				}
+				.cheveron-wrapper {
+					background-color: $light-blue;	
+					cursor:pointer;
+				}
+			}
+			li.active {
+				background-color:$white;
+				color:$medium-blue;
+			}
+		}
+		#subNavList {
+			position: fixed;
+			top: 135px;
+			width: 100%;
+			height: 152px;
+			float:right;
+			height: calc(100vh - 135px);
+			right:-100vw;
+			transition: right 0.5s ease-out;	
+			
+			@include respond-to(large) {
+				top:82px;
+				height: calc(100vh - 65px);
+				width:368px;
+				float:left;
+				left:-368px;
+				transition: left 0.5s ease-out;	
+			}
+			
+			#closeSubNavContainer, ol {
+				height:100%;
+				display:block;
+				float:left;
+			}
+			#closeSubNavContainer {
+				width:2.875em;
+			}
+			ol {
+				width: calc(100% - 2.94em);
+				background-color:$medium-blue;
+				border-left: 1px solid $light-blue;
+				overflow: scroll;
+				
+				#subTitleRow {
+					grid-template-columns: unset;
+					border-bottom: unset;
+					position: fixed;
+					z-index: 1;
+					background-color: $medium-blue;
+					
+					@include respond-to(large) {
+						width:304px;
+					}
+						
+					span {
+						text-indent: 15px;
+					}
+					
+					#closeSubNavButton {
+						float: right;
+						position: absolute;
+						right: 3.6em;
+						top: 7px;
+						padding:16px;
+
+						@include respond-to(large) {
+							right: 0.6em
+						}
+						
+						span {
+							background-color:$white;
+							height:2px;
+							width:14px;
+							position:fixed;
+						}
+						span:first-child {
+							transform: rotate(225deg);
+						}
+						span:last-child {
+							transform: rotate(315deg);
+						}
+					}
+				}
+				.subNavMenueRow {
+					float: left;
+					text-indent: 24px;
+					font-size: 0.85em;
+					text-transform: none;	
+					grid-template-columns: unset !important;
+					position:relative;
+					
+					.nestedNav {
+						width:100%;
+						max-height:0;
+						transition: max-height 0.5s ease-out;	
+						overflow: hidden;
+						
+						li {
+							border-bottom:1px solid rgba(139, 180, 210, 0.3);
+							background-color:$light-blue;
+							
+							span {
+								text-indent: 42px;
+								line-height:4em;
+							}
+						}
+					}
+					.open {
+						max-height: 500px;
+						transition: max-height 0.5s ease-out;
+					}
+
+				}
+				.subNavMenueRow:nth-child(2) {
+					margin-top:50px;
+				}
+				.subCheveronWrapper {
+					right: 0px;
+					position: absolute;	
+					
+					svg {
+						transition: transform 0.5s;
+						margin: 0px;
+						width: 14px;
+						right: 13px;
+						top: 12px;
+						position: absolute;						
+					}
+					.twist {
+						transform: rotate(180deg);						
+					}
+				}
+			}
+		}
+		#subNavList.active {
+			right:0vw;
+			transition: right 0.5s ease-out;
+			
+			@include respond-to(large) {
+				left:0vw;
+				transition: left 0.5s ease-out;
+			}
+		}
+	}
+}
